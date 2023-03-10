@@ -9,7 +9,7 @@ type ErrorMessage = {
 }
 
 interface ApiErrorResponse{
-  error:Array<ErrorMessage>
+  errors:Array<ErrorMessage>
 }
 
 export const Error = (e:Error | AxiosError)=>{
@@ -20,9 +20,9 @@ export const Error = (e:Error | AxiosError)=>{
       return toast.error("Response not found")
     }
 
-    const { error } = e.response?.data;
+    const { errors } = e.response?.data;
 
-    const message = error.map((item:ErrorMessage)=>`${item.field}: ${item.message}`)
+    const message = errors.map((item:ErrorMessage)=>`${item.field}: ${item.message}`)
     return toast.error(message.join(" "))
   }
 

@@ -17,7 +17,7 @@ func GetById(c *gin.Context){
 	var scope string
 
 	if err != nil {
-		scope = config.EnvVariable("APP_URL") + "/app"
+		scope = config.EnvVariable("APP_URL") + "/app/"
 		c.Redirect(http.StatusMovedPermanently, scope)
 		return
 	}
@@ -33,7 +33,7 @@ func CreateNew(c *gin.Context){
 	if err := c.BindJSON(&linkReq); err != nil {
 
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
-			"error": helpers.GetErrors(err),
+			"errors": helpers.GetErrors(err),
 		})
 		return
 	}
@@ -43,7 +43,7 @@ func CreateNew(c *gin.Context){
 
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
-			"error":err,
+			"errors":err,
 		})
 		return
 	}

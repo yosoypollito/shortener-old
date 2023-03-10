@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { useAppSelector } from "@redux/hooks"
 import { selectLink } from "@redux/reducers/links"
 import { LinkState } from "@src/types"
