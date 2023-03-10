@@ -1,0 +1,26 @@
+.link__wrapper{
+	display:flex;
+	grid-column:1/-1;
+
+	flex-direction:column;
+	gap:12px;
+
+	font-size: 0.70rem;
+	font-weight:500;
+
+	text-align:center;
+}
+
+.link__wrapper > span a{
+	color:rgba(var(--extra));
+
+	text-decoration:none;
+}
+
+.link__wrapper > h1, span{
+	font-weight:600;
+}
+
+.link__wrapper > h2,h3,h4,h5,h6{
+	font-weight:500;
+}

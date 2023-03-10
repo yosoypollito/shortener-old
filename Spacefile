@@ -1,0 +1,29 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: shortener-api
+    src: ./api
+    engine: custom
+    primary: true
+    presets:
+      env:
+        - name: APP_URL
+          description: "APP URL To Forward no id param endpoints"
+          default: "https://s.daif.one/app/"
+    commands:
+      - go get .
+      - go build .
+    include:
+      - api 
+    run: ./api
+  - name: shortener-front 
+    src: ./front
+    engine: react 
+    presets:
+      env:
+        - name: VITE_API_URL
+          description: "API URL endpoint"
+          default: "https://s.daif.one"
+    path: app 
+    public_routes:
+      - "/*"

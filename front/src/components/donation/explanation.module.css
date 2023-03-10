@@ -1,0 +1,29 @@
+.contribute{
+
+  grid-column:1/-1;
+
+  display:flex;
+  width:100%;
+  place-content:center;
+  place-items:center;
+  flex-direction:column;
+  gap:18px;
+}
+
+.contribute h1{
+  font-size:1.5em;
+}
+
+.donate{
+  display:flex;
+  width:100%;
+  
+  max-width:500px;
+  place-items:flex-start;
+  flex-direction:column;
+
+  gap:18px;
+  
+  font-size:14px;
+  text-align:left;
+}

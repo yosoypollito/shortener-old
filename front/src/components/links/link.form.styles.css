@@ -1,0 +1,50 @@
+.link__form{
+	display:flex;
+	flex-direction:column;
+
+	gap:18px;
+
+	width:100%;
+	max-width:400px;
+}
+
+.link__form__group{
+	display:flex;
+	flex-direction:column;
+
+	font-size:0.80rem;
+	text-align:left;
+	gap:6px;
+}
+
+.link__form__group label{
+	text-transform:uppercase;
+	letter-spacing:0.75px;
+	font-weight:600;
+}
+
+.link__form__group input{
+	width:100%;
+}
+
+.link__form__group--submitable{
+	display:flex;
+	flex-direction:row;
+}
+
+.link__form__group--submitable input{
+	outline:none;
+	padding:6px 12px;
+	background:none;
+	color:white;
+	border:1px solid rgba(var(--extra));
+	border-radius:6px 0px 0px 6px;
+}
+
+.link__form__group--submitable button{
+	padding:6px;
+	background:rgba(var(--extra));
+	border:0;
+	border-radius:0px 6px 6px 0px;
+	color:rgba(var(--primary));
+}
