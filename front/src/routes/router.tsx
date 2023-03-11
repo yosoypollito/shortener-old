@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 
+
 //There goes the pages
 import Layout from '@src/layout'
 import Home from '@pages/home'
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path:'donate',
         element:<Donation/>
+      },
+      {
+        path:'*',
+        element:<Error/>
       }
     ]
   }

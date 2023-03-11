@@ -7,8 +7,7 @@ import { PayloadAction } from '@reduxjs/toolkit'
 
 import * as utils from "@utils"
 
-const { VITE_API_URL } = import.meta.env;
-
+const API_URL = import.meta.env.VITE_API_URL;
 const initialState:LinkState = {
   step:0,
   link:""
@@ -26,7 +25,7 @@ const linkSlice = createSlice({
       state.step -= 1 
     },
     setLink:(state, action: PayloadAction<string>)=>{
-      state.link = `${VITE_API_URL}/${action.payload}`
+      state.link = `${API_URL}/${action.payload}`
     }
   }
 })
@@ -37,7 +36,7 @@ export const { nextStep, prevStep, setLink } = linkSlice.actions
 
 export const create = (scope:Scope)=>store.dispatch(async(dispatch)=>{
   try{
-    const { data:{ link }} = await axios.post<LinkResponse>(`${import.meta.env.VITE_API_URL}/link`, {
+    const { data:{ link }} = await axios.post<LinkResponse>(`${API_URL}/link`, {
       scope:scope
     })
     dispatch(nextStep())
