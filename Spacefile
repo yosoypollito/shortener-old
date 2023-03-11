@@ -5,11 +5,16 @@ micros:
     src: ./api
     engine: custom
     primary: true
+    public_routes:
+      - "/*"
     presets:
       env:
         - name: APP_URL
           description: "APP URL To Forward no id param endpoints"
-          default: "https://s.daif.one/app/"
+          default: "https://s.daif.one"
+        - name: GOENV
+          description: "Environment"
+          default: "PROD"
     commands:
       - go get .
       - go build .
@@ -21,9 +26,9 @@ micros:
     engine: react 
     presets:
       env:
-        - name: VITE_API_URL
+        - name: REACT_APP_API_URL
           description: "API URL endpoint"
           default: "https://s.daif.one"
     path: app 
     public_routes:
-      - "/*"
+      - "*"
