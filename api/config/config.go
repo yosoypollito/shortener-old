@@ -7,11 +7,16 @@ import (
 
 func EnvVariable(key string) string{
 
-	err := godotenv.Load(".env")
+	environment := os.Getenv("GOENV")
 
-	if err != nil {
-		panic("Error Loading Environment Variables from file")
-	}
+	if environment != "PROD" {
+		err := godotenv.Load(".env.dev")
+
+		if err != nil {
+			panic("Error Loading Environment Variables from file")
+		}
+
+}
 
 	return os.Getenv(key)
 }

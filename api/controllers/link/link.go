@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"shortener/api/helpers"
 	"shortener/api/config"
+	"fmt"
 )
 
 func GetById(c *gin.Context){
@@ -42,8 +43,9 @@ func CreateNew(c *gin.Context){
 	link, err := links.Create(linkReq.Scope)
 
 	if err != nil {
+		fmt.Println(err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
-			"errors":err,
+			"errors":helpers.GetErrors(err),
 		})
 		return
 	}

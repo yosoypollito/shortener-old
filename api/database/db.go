@@ -8,7 +8,7 @@ import (
 
 func Getbase(name string) (*base.Base, error) {
 
-	key := config.EnvVariable("PROJECT_KEY")
+	key := config.EnvVariable("DETA_PROJECT_KEY")
 
 	d, err := deta.New(deta.WithProjectKey(key))
 

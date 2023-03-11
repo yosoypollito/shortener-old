@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"shortener/api/controllers/link"
 	"shortener/api/config"
-	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,12 +25,13 @@ func cors(c *gin.Context) {
 func main() {
 
 	//Configure database
-
 	r := gin.Default()
 
 	r.NoRoute(func(c *gin.Context) {
-		fmt.Print("notfound")
-		c.Redirect(http.StatusMovedPermanently, config.EnvVariable("APP_URL"))
+		app := config.EnvVariable("APP_URL") + "/app/"
+
+		c.Redirect(http.StatusMovedPermanently, app)
+		c.Next()
 	})
 
 	r.Use(cors)
