@@ -29,16 +29,12 @@ func GetById(c *gin.Context){
 }
 
 func CreateNew(c *gin.Context){
+
 	var linkReq links.Body
 
-	if err := c.BindJSON(&linkReq); err != nil {
-
-		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
-			"errors": helpers.GetErrors(err),
-		})
+	if err := helpers.BindJsonOrAbort(&linkReq, c); err != nil{
 		return
 	}
-
 
 	link, err := links.Create(linkReq.Scope)
 
