@@ -13,10 +13,18 @@ func EnvVariable(key string) string{
 		err := godotenv.Load(".env.dev")
 
 		if err != nil {
-			panic("Error Loading Environment Variables from file")
+			panic("Error Loading Environment Variables from file .env.dev")
 		}
 
-}
+	}
+
+	if environment == "PROD" {
+		err := godotenv.Load(".env.prod")
+
+		if err != nil {
+			panic("Error Loading Environment Variables from file .env.prod")
+		}
+	}
 
 	return os.Getenv(key)
 }
