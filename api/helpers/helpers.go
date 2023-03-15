@@ -77,7 +77,7 @@ func BindJsonOrAbort (obj interface{}, c *gin.Context) (error) {
 		printError(errors.New(StringFromJson(fieldErrors)))
 
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
-			"error": fieldErrors,
+			"errors": fieldErrors,
 		})
 
 		return errors.New(StringFromJson(fieldErrors));
