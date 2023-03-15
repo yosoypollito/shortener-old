@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"io"
 )
 
 type ErrorMsg struct {
@@ -41,6 +42,7 @@ func GetErrors(err error) []ErrorMsg {
 			out = append(out, ErrorMsg{fe.Field(), getErrorMsg(fe)})
 		}
 	}
+
 	return out
 } 
 
@@ -52,7 +54,7 @@ func printError(err error) string{
 	return errorString
 }
 
-func stringFromJson(obj interface{}) string{
+func StringFromJson(obj interface{}) string{
 	jsonString, err := json.MarshalIndent(obj, "", "    ");
 
 	if err != nil{
@@ -62,18 +64,23 @@ func stringFromJson(obj interface{}) string{
 	return string(jsonString) 
 }
 
-func BindJsonOrAbort (obj interface{}, c *gin.Context) ([]ErrorMsg) {
-
-	if err := c.BindJSON(obj); err != nil {
+func BindJsonOrAbort (obj interface{}, c *gin.Context) (error) {
+	if err := c.ShouldBindJSON(&obj); err != nil {
 		fieldErrors := GetErrors(err)
-		printError(errors.New(stringFromJson(fieldErrors)))
 
+		if err == io.EOF{
+			fieldErrors = append(fieldErrors, ErrorMsg{
+				Field:"Body",
+				Message:"No body",
+			})
+		}
+		printError(errors.New(StringFromJson(fieldErrors)))
 
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
 			"error": fieldErrors,
 		})
 
-		return fieldErrors
+		return errors.New(StringFromJson(fieldErrors));
 	}
 
 	return nil;
