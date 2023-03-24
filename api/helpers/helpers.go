@@ -16,20 +16,26 @@ type ErrorMsg struct {
 	Message string `json:"message"`
 }
 
+func (self *ErrorMsg) ToString() string{
+	return StringFromJson(self)
+}
+
+var ErrorsMsg = map[string]string{
+	 "required":"This field is required",
+	 "email":"Should be a valid email",
+	 "url":"Should be a valid url",
+	 "eqfield":"Do not match",
+}
+
 func getErrorMsg(fe validator.FieldError) string {
-	switch fe.Tag() {
-	case "required":
-		return "This field is required"
-	case "lte":
-		return "Should be less than " + fe.Param()
-	case "gte":
-		return "Should be greater than " + fe.Param()
-	case "email":
-		return "Should be a valid email"
-	case "url":
-		return "Should be a valid url"
+	tag := fe.Tag()
+	errorMsg := ErrorsMsg[tag]
+
+	if errorMsg == "" {
+		return "Unkown Error"
 	}
-	return "Unkown Error"
+
+	return errorMsg
 }
 
 func GetErrors(err error) []ErrorMsg {
