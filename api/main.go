@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"shortener/api/controllers/link"
+	"shortener/api/controllers/auth"
 	"shortener/api/config"
 	"github.com/gin-gonic/gin"
 )
@@ -35,9 +36,15 @@ func main() {
 	})
 
 	r.Use(cors)
+	
 
 	r.GET("/:id", link.GetById)
 	r.POST("/link", link.CreateNew)
+
+	r.GET("/auth", auth.Auth)
+	r.POST("/auth/login", auth.Login)
+	r.POST("/auth/register", auth.Register)
+	r.GET("/auth/logout", auth.Logout)
 
 	r.Run()
 }
