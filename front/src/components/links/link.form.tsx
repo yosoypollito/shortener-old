@@ -44,7 +44,7 @@ export default function LinkForm(){
           Link
         </label>
         <div className="link__form__group--submitable">
-          <input {...register("scope")}/>
+          <input id="scope" {...register("scope")}/>
           <button type="submit" title="Create link">
             <BiChevronRight size={20}/>
           </button>
