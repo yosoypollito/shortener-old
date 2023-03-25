@@ -40,7 +40,7 @@ export default function LinkForm(){
     <form className="link__form" onSubmit={handleSubmit(submit)}>
       <h1>Short Link</h1>
       <div className="link__form__group">
-        <label htmlFor="link">
+        <label htmlFor="scope">
           Link
         </label>
         <div className="link__form__group--submitable">
