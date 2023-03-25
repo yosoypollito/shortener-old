@@ -10,7 +10,7 @@ export default function NavBar(){
         <NavItem to="" label="Home"/>
       </div>
       <div className="nav__container">
-        {/*<NavItem to="auth" label="Start"/>*/}
+        <NavItem to="auth" label="Start"/>
         <NavItem to="donate" label="Contribute"/>
       </div>
     </nav>
