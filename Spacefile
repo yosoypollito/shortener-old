@@ -2,7 +2,7 @@
 v: 0
 micros:
   - name: shortener-api
-    src: ./api
+    src: ./old-api
     engine: custom
     primary: true
     public_routes:
@@ -18,17 +18,22 @@ micros:
     commands:
       - go get .
       - go build .
+    dev: air main.go
     include:
-      - api 
-    run: ./api
+      - old-api 
+    run: ./old-api
   - name: shortener-front 
-    src: ./old-front
-    engine: react 
+    src: ./front
+    engine: next 
     presets:
       env:
         - name: REACT_APP_API_URL
           description: "API URL endpoint"
           default: "https://s.daif.one"
+        - name: DETA_ENV 
+          description: "Environment"
+          default: "PROD"
     path: app 
     public_routes:
       - "*"
+    dev: npm run dev
