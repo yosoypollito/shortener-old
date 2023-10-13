@@ -121,7 +121,7 @@ func Auth(c *gin.Context){
 	auth, err := c.Cookie("Authorization")
 
 	if err != nil{
-		c.JSON(http.StatusOK, gin.H{
+		c.JSON(http.StatusUnauthorized, gin.H{
 			"error":err,
 		})
 	}
