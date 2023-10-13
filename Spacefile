@@ -22,7 +22,7 @@ micros:
       - api 
     run: ./api
   - name: shortener-front 
-    src: ./front
+    src: ./old-front
     engine: react 
     presets:
       env:
